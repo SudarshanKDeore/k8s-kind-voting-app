@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash.
 
 # For AMD64 / x86_64
 
