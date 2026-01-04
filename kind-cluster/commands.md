@@ -125,7 +125,7 @@
 
 ---
 
-## 8. Installing Kubernetes Dashboard
+## 8. Installing Kubernetes Dashboard (Create Service Account if not [dashboard-adminuser.yml])
 
 - Deploy Kubernetes dashboard:
   ```bash
