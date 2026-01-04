@@ -1,17 +1,25 @@
 #!/bin/bash
+set -e
 
 # Variables
 VERSION="v1.30.0"
-URL="https://dl.k8s.io/release/${VERSION}/bin/linux/amd64/kubectl"
 INSTALL_DIR="/usr/local/bin"
+BIN="kubectl"
 
-# Download and install kubectl
-curl -LO "$URL"
-chmod +x kubectl
-sudo mv kubectl $INSTALL_DIR/
+# Download kubectl
+curl -LO "https://dl.k8s.io/release/${VERSION}/bin/linux/amd64/${BIN}"
+
+# Download checksum
+curl -LO "https://dl.k8s.io/${VERSION}/bin/linux/amd64/${BIN}.sha256"
+
+# Verify checksum
+echo "$(cat ${BIN}.sha256)  ${BIN}" | sha256sum --check
+
+# Install
+chmod +x ${BIN}
+sudo mv ${BIN} ${INSTALL_DIR}/${BIN}
+
+# Verify
 kubectl version --client
 
-# Clean up
-rm -f kubectl
-
-echo "kubectl installation complete."
+echo "kubectl ${VERSION} installation completed successfully."
