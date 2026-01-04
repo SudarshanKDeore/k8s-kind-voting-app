@@ -137,6 +137,12 @@
   kubectl -n kubernetes-dashboard create token admin-user
   ```
 
+- Port-Forwarding
+  ```bash
+  kubectl get svc -n kubernetes-dashboard
+  kubectl port-forward svc/kubernetes-dashboard -n kubernetes-dashboard 5555:443 --address=0.0.0.0 &
+  kubectl -n kubernetes-dashboard create token admin-user
+  ```
 ---
 
 ## 9. Argo CD Initial Admin Password
